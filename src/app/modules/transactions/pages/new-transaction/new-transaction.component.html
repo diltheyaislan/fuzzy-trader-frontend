@@ -1,0 +1,79 @@
+<mat-card class="content-card content-card-with-actions">
+  <mat-card-header fxLayoutAlign="space-between">
+    <div mat-card-avatar class="avatar">
+      <mat-icon>attach_money</mat-icon>
+    </div>
+    <div fxFlex="grow">
+      <mat-card-title>New Investment</mat-card-title>
+      <mat-card-subtitle>Find a opportunity and make a good deal</mat-card-subtitle>
+    </div>
+
+    <div>
+      <button *ngIf="amount" mat-button (click)="onReset()">
+        <mat-icon>clear</mat-icon>
+        <span>Reset</span>
+      </button>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <form *ngIf="!processing && !amount" [formGroup]="form" (ngSubmit)="submitForm()" class="form">
+      <mat-form-field class="full-width">
+          <input
+            matInput
+            formControlName="amount"
+            type="number"
+            min="1"
+            placeholder="Amount (USD)">
+          <mat-error *ngIf="form.controls['amount'].hasError('required')">
+            Amount is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      <button [disabled]="form.invalid" mat-stroked-button class="btn-block full-width">Search assets</button>
+    </form>
+
+    <div *ngIf="!processing && amount" class="content">
+
+      <div class="amount-investment">
+        Amount: {{ amount | currency }}
+      </div>
+
+      <mat-tab-group mat-align-tabs="start">
+
+        <mat-tab label="Shares">
+          <div class="assets-wrapper">
+              <app-investment-asset
+                *ngFor="let item of companies"
+                [id]="item.id"
+                [name]="item.name"
+                [symbol]="item.symbol"
+                [logoUrl]="item.logo_url"
+                [description]="item.description"
+                [price]="item.price"
+                [amount]="amount"
+                type="share"></app-investment-asset>
+          </div>
+        </mat-tab>
+
+        <mat-tab label="Cryptocurrencies">
+
+          <div class="assets-wrapper">
+            <app-investment-asset
+              *ngFor="let item of currencies"
+              [id]="item.id"
+              [name]="item.name"
+              [symbol]="item.symbol"
+              [logoUrl]="item.logo_url"
+              [description]="item.description"
+              [price]="item.price"
+              [amount]="amount"
+              type="cryptocurrency"></app-investment-asset>
+        </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+
+    <div *ngIf="processing" class="process">
+      <mat-progress-spinner style="margin:0 auto;" mode="indeterminate"></mat-progress-spinner>
+    </div>
+  </mat-card-content>
+</mat-card>

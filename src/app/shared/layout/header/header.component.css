@@ -1,0 +1,13 @@
+.header-wrapper {
+  width: 100%;
+  max-width: 1080px;
+}
+
+.logo-header {
+  height: 100%;
+}
+
+.logo-header img {
+  margin-top: 7px;
+  height:  38px;
+}

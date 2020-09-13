@@ -1,0 +1,33 @@
+.asset-wrapper {
+  padding: 10px 0;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #e3e3e3;
+  position: relative;
+}
+
+.asset-content {
+  display: flex;
+}
+
+.asset-logo {
+  width: 100px !important;
+  margin-right: 10px;
+}
+
+.asset-info-wrapper {
+  flex-grow: 1;
+}
+
+.asset-name {
+  font-size: 1.2rem;
+}
+
+.asset-price {
+  color: #009b27;
+}
+
+.asset-actions {
+  position: absolute;
+  top: 10px;
+  right: 0;
+}

@@ -1,0 +1,78 @@
+<mat-card class="content-card content-card-with-actions">
+  <mat-card-header fxLayoutAlign="space-between">
+    <div mat-card-avatar class="avatar">
+      <mat-icon>account_balance_wallet</mat-icon>
+    </div>
+    <div fxFlex="grow">
+      <mat-card-title>My Investment Portfolio</mat-card-title>
+      <mat-card-subtitle>See all assets</mat-card-subtitle>
+    </div>
+
+    <div>
+      <button mat-button routerLink="/transactions/buy" routerLinkActive="active">
+        <mat-icon>attach_money</mat-icon>
+        <span>New investment</span>
+      </button>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <div *ngIf="!processing" class="content">
+
+      <div *ngIf="portfolio" class="amount-investment">
+        Amount: {{ portfolio.amount | currency }}
+      </div>
+
+      <mat-tab-group mat-align-tabs="start">
+
+        <mat-tab label="Shares">
+          <div *ngIf="portfolio?.shares.length > 0" class="assets-wrapper">
+              <app-portfolio-asset
+                *ngFor="let item of portfolio.shares"
+                [id]="item.company.id"
+                [name]="item.company.name"
+                [symbol]="item.company.symbol"
+                [logoUrl]="item.company.logo_url"
+                [price]="item.company.price"
+                [quantity]="item.quantity"
+                [amount]="item.amount"
+                type="share"></app-portfolio-asset>
+          </div>
+
+          <div *ngIf="!portfolio || portfolio.shares.length <= 0" class="assets-wrapper">
+              No shares acquired,
+              <a routerLink="transactions/buy" routerLinkActive="active">
+                click here for a new investment
+              </a>
+          </div>
+        </mat-tab>
+
+        <mat-tab label="Cryptocurrencies">
+
+          <div *ngIf="portfolio?.cryptocurrency.length > 0" class="assets-wrapper">
+            <app-portfolio-asset
+              *ngFor="let item of portfolio.cryptocurrency"
+              [id]="item.cryptocurrency.id"
+              [name]="item.cryptocurrency.name"
+              [symbol]="item.cryptocurrency.symbol"
+              [logoUrl]="item.cryptocurrency.logo_url"
+              [price]="item.cryptocurrency.price"
+              [quantity]="item.quantity"
+              [amount]="item.amount"
+              type="cryptocurrency"></app-portfolio-asset>
+          </div>
+
+          <div *ngIf="!portfolio || portfolio.cryptocurrency.length <= 0" class="assets-wrapper">
+            No cryptocurrencies acquired,
+            <a routerLink="transactions/buy" routerLinkActive="active">
+              click here for a new investment
+            </a>
+        </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+
+    <div *ngIf="processing" class="process">
+      <mat-progress-spinner style="margin:0 auto;" mode="indeterminate"></mat-progress-spinner>
+    </div>
+  </mat-card-content>
+</mat-card>

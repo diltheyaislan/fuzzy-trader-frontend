@@ -1,0 +1,54 @@
+<div class="register-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+  <mat-card class="box">
+    <mat-card-header *ngIf="!processing">
+      <mat-card-title>
+        Register
+      </mat-card-title>
+    </mat-card-header>
+
+    <form *ngIf="!processing" [formGroup]="form" (ngSubmit)="submitForm()" class="register-form">
+      <mat-card-content>
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            formControlName="name"
+            placeholder="Name">
+          <mat-error *ngIf="form.controls['name'].hasError('required')">
+            Name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            formControlName="email"
+            placeholder="E-mail">
+          <mat-error *ngIf="form.controls['email'].hasError('email') && !form.controls['email'].hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="form.controls['email'].hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            formControlName="password"
+            type="password"
+            placeholder="Password">
+          <mat-error *ngIf="form.controls['password'].hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
+      <button [disabled]="form.invalid" mat-stroked-button class="btn-block">Submit</button>
+    </form>
+
+    <div *ngIf="processing" class="process text-center">
+      <mat-progress-spinner style="margin:0 auto;" mode="indeterminate"></mat-progress-spinner>
+    </div>
+  </mat-card>
+
+</div>

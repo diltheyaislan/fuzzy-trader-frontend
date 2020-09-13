@@ -1,0 +1,17 @@
+<div class="asset-wrapper">
+  <div class="asset-content">
+    <div class="asset-image-wrapper">
+      <img class="asset-logo" src="{{ logoUrl }}">
+    </div>
+
+    <div class="asset-info-wrapper">
+      <span class="asset-name"><strong>{{ name }}</strong> ({{ symbol }})</span>
+
+      <div class="asset-info">
+        <strong>Price:</strong>&nbsp;<span class="asset-price">{{ price | currency }}</span><br>
+        <strong>Quantity:</strong>&nbsp;<span class="asset-price">{{ quantity | number: '1.4-4' }}</span><br>
+        <strong>Amount:</strong>&nbsp;<span class="asset-price">{{ amount | currency }}</span>
+      </div>
+    </div>
+  </div>
+</div>

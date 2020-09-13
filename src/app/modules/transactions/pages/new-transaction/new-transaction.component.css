@@ -1,0 +1,54 @@
+.content-card {
+  width: 1000px;
+}
+
+.content {
+  min-height: 80px;
+}
+
+.process {
+  margin: 40px auto !important;
+}
+
+.avatar .mat-icon {
+  font-size: 45px;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-column-actions {
+  width: 20px !important;
+  padding: 0 10px !important;
+}
+
+.amount-investment {
+  width: 100%;
+  text-align: center;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+
+
+.mat-form-field {
+  margin-right: 12px;
+}
+
+.form {
+  width: 40%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.mat-form-field {
+  margin-bottom: 10px !important;
+}
+
+.assets-wrapper {
+  padding-top: 10px;
+}

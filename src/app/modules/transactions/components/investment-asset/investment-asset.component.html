@@ -1,0 +1,32 @@
+<div class="asset-wrapper">
+  <div class="asset-content">
+    <div class="asset-image-wrapper">
+      <img class="asset-logo" src="{{ logoUrl }}">
+    </div>
+
+    <div class="asset-info-wrapper">
+      <span class="asset-name"><strong>{{ name }}</strong> ({{ symbol }})</span>
+
+      <div class="asset-info">
+        <strong>Price:</strong>&nbsp;<span class="asset-price">{{ price | currency }}</span><br>
+        <strong>Quantity:</strong>&nbsp;<span class="asset-price">{{ (amount / price) | number: '1.4-4' }}</span>
+      </div>
+
+      <span *ngIf="showDescription" class="asset-description">
+        {{ description }}
+      </span>
+    </div>
+  </div>
+
+  <div class="asset-actions">
+    <button (click)="toggleShowDescription()" mat-button>
+      <mat-icon>{{ showDescription ? 'clear' : 'info' }}</mat-icon>&nbsp;
+      <span>{{ showDescription ? 'Close information' : 'More information' }}</span>
+    </button>
+    &nbsp;
+    <button (click)="onBuy()" mat-raised-button color="primary">
+      <mat-icon *ngIf="!processing">payments</mat-icon>&nbsp;
+      <span>{{ processing ? 'Processing...' : 'Buy' }}</span>
+    </button>
+  </div>
+</div>
